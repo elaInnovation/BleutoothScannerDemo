@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="BluetoothScannerDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BluetoothScannerDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Light">
+    <!--="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBox x:Name="txtSearch" Grid.Row="0" PlaceholderText="Search by mac adress or name" FontFamily="Roboto" Foreground="#336699" BorderBrush="#336699" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Padding="5" FontSize="30" TextChanged="TxtSearch_TextChanged"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" >
+            <Button x:Name="btnStartBle" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Foreground="#336699" Background="#ffffff" BorderBrush="#336699" Width="50" VerticalAlignment="Stretch" Margin="5" FontSize="30" Click="BtnStartBle_Click"/>
+            <Button x:Name="btnClearBle" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Content="&#xE894;" Foreground="#336699" Background="#ffffff" BorderBrush="#336699" Width="50" VerticalAlignment="Stretch" Margin="5" FontSize="30" Click="BtnClearBle_Click"/>
+        </StackPanel>
+        <ListView x:Name="listTag" ItemsSource="{x:Bind tagColl}" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5,5,5,10">
+                        <TextBlock Text="{Binding TagMac}" FontFamily="Roboto Bold" FontWeight="Bold" Foreground="#336699" FontSize="16" />
+                        <TextBlock Text="{Binding TagName}" FontFamily="Roboto Light" Foreground="#336699" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Signal Strength (dBm) : " FontFamily="Roboto Light" Foreground="#336699" />
+                            <TextBlock Text="{Binding TagRssi}"  FontFamily="Roboto Light" Foreground="#336699" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding TagData}" FontFamily="Roboto Light" Foreground="#336699" Visibility="{Binding TagDataVisibility }" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
